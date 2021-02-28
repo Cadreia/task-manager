@@ -52,38 +52,18 @@ export class RequestsService {
     this.setInviteRequests(requests);
   }
 
-  deleteJoinRequest(requestId: number): void {
-    console.log(this.allJoinRequests);
-    const index = this.allJoinRequests.map(joinRequest => joinRequest.id).indexOf(requestId);
-    if (index !== 1) { this.allJoinRequests.splice(index, 1); }
-    this.setJoinRequests(this.allJoinRequests);
-    console.log(this.allJoinRequests);
-  }
-
-  deleteInviteRequest(requestId: number): void {
-    console.log(this.allInviteRequests);
-    const index = this.allInviteRequests.map(inviteRequest => inviteRequest.id).indexOf(requestId);
-    if (index !== 1) { this.allInviteRequests.splice(index, 1); }
-    this.setInviteRequests(this.allInviteRequests);
-    console.log(this.allInviteRequests);
-  }
-
   updateJoinRequest(request: JoinRequest, status: string): void {
-    console.log(this.allJoinRequests);
-    this.deleteJoinRequest(request.id);
-    console.log(this.allJoinRequests);
-    request.status = status;
-    this.allJoinRequests.push(request);
-    this.setJoinRequests(this.allJoinRequests);
-    console.log(this.allJoinRequests);
+    const index = this.allJoinRequests.map(joinRequest => joinRequest.id).indexOf(request.id);
+    this.allJoinRequests[index].status = status;
+    this.setInviteRequests(this.allJoinRequests);
   }
 
   updateInviteRequest(request: JoinRequest, status: string): void {
-    this.deleteInviteRequest(request.id);
-    console.log(this.allInviteRequests);
-    request.status = status;
-    this.allInviteRequests.push(request);
+    const index = this.allInviteRequests.map(inviteRequest => inviteRequest.id).indexOf(request.id);
+    console.log(request);
+    console.log(index);
+    console.log(this.allInviteRequests[index]);
+    this.allInviteRequests[index].status = status;
     this.setInviteRequests(this.allInviteRequests);
-    console.log(this.allInviteRequests);
   }
 }

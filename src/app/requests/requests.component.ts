@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestsService} from '../_shared/services/requests/requests.service';
 import {UserService} from '../_shared/services/user/user.service';
-import {Login} from '../_models/login';
 import {JoinRequest} from '../_models/join-request';
 import {User} from '../_models/user';
 import {UserGroup} from '../_models/user-group';

@@ -17,16 +17,16 @@ export class StorageService {
 
   users: User[] = [
     new User(1, 'kim', 'west', 'kimwest', 'kimwest@gmail.com', '12345'),
-    new User(2, 'beverly', 'kane', 'b-kane', 'bkane@gmail.com', '76543210'),
-    new User(3, 'scott', 'epah', 'scott-e', 'scotte@gmail.com', '7654390'),
-    new User(4, 'blaine', 'peters', 'pblaine', 'pblaine@gmail.com', '793786'),
-    new User(5, 'sally', 'coleman', 'scole', 'sally@gmail.com', '67987655jb')
+    new User(2, 'beverly', 'kane', 'b-kane', 'bkane@gmail.com', '12345'),
+    new User(3, 'scott', 'epah', 'scott-e', 'scotte@gmail.com', '12345'),
+    new User(4, 'blaine', 'peters', 'pblaine', 'pblaine@gmail.com', '12345'),
+    new User(5, 'sally', 'coleman', 'scole', 'sally@gmail.com', '12345')
   ];
 
   adminCount = 2;
   admins: Admin[] = [
-    new Admin(1, 'ben', 'coaley', 'bcoaley', 'bcoale@yahoo.com', '7890-76'),
-    new Admin(2, 'mark', 'twain', 'mtwain', 'mtwain@outlook.com', '465789')
+    new Admin(1, 'ben', 'coaley', 'bcoaley', 'bcoale@yahoo.com', '12345'),
+    new Admin(2, 'mark', 'twain', 'mtwain', 'mtwain@outlook.com', '12345')
   ];
 
   groups: Group[] = [
