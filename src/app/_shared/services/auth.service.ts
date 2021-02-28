@@ -1,5 +1,5 @@
-import { Login } from '../../_models/login';
-import { Injectable } from '@angular/core';
+import {Login} from '../../_models/login';
+import {Injectable} from '@angular/core';
 import {User} from '../../_models/user';
 import {Admin} from '../../_models/admin';
 import {StorageService} from './storage.service';
@@ -47,6 +47,6 @@ export class AuthService {
     if (userExists) {
       localStorage.setItem('user', JSON.stringify(loginModel));
     }
-      return userExists;
+    return userExists;
   }
 }

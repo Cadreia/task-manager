@@ -131,6 +131,22 @@ header .logo span {
   background-color: #f1c40f;
 }
 
+.sidebar nav ul li:nth-child(6):hover {
+  background-color: #e67e22;
+}
+
+.sidebar nav ul li:nth-child(6).active {
+  background-color: #e67e22;
+}
+
+.sidebar nav ul li:nth-child(7):hover {
+  background-color: #2980b9;
+}
+
+.sidebar nav ul li:nth-child(7).active {
+  background-color: #2980b9;
+}
+
 
 .sidebar nav ul li a {
   color: #D7D5D5;

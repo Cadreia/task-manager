@@ -10,7 +10,6 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddNewTaskComponent } from './add-new-task/add-new-task.component';
 import { HeaderComponent } from './_shared/components/header/header.component';
 import { FooterComponent } from './_shared/components/footer/footer.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -21,6 +20,8 @@ import { GroupDetailsComponent } from './group-details/group-details.component';
 import {CreateTaskComponent} from './createtask/createtask.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AdminsComponent } from './admins/admins.component';
+import { InvitationsComponent } from './invitations/invitations.component';
+import { RequestsComponent } from './requests/requests.component';
 
 // import { DragDropModule } from "@angular/cdk/drag-drop";
 
@@ -30,8 +31,9 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'users', component: UsersComponent },
   { path: 'admins', component: AdminsComponent },
-  { path: 'addnewtask', component: AddNewTaskComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'invitations', component: InvitationsComponent },
+  { path: 'requests', component: RequestsComponent },
   { path: 'allgroups', component: GroupsComponent },
   { path: 'mygroups', component: MyGroupsComponent },
   { path: 'groups/creategroup', component: CreateGroupComponent },
@@ -47,7 +49,6 @@ const routes: Routes = [
     SignupComponent,
     HomeComponent,
     UsersComponent,
-    AddNewTaskComponent,
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
@@ -57,7 +58,9 @@ const routes: Routes = [
     GroupDetailsComponent,
     CreateTaskComponent,
     EditTaskComponent,
-    AdminsComponent
+    AdminsComponent,
+    InvitationsComponent,
+    RequestsComponent
   ],
   imports: [
     // DragDropModule,

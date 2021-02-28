@@ -4,6 +4,8 @@ import {UserGroup} from '../../_models/user-group';
 import {Group} from '../../_models/group';
 import {Task} from '../../_models/task';
 import {Injectable} from '@angular/core';
+import {JoinRequest} from '../../_models/join-request';
+import {InviteRequest} from '../../_models/invite-request';
 
 @Injectable({
   providedIn: 'root'
@@ -52,12 +54,29 @@ export class StorageService {
     new Task(4, 'Task 1', 'task 1 for groups 3', 'assigned', 'in progress', this.groups[2], this.users[4])
   ];
 
+  joinRequests: JoinRequest[] = [
+    new JoinRequest(1, 'accepted', this.users[2], this.groups[0]),
+    new JoinRequest(2, 'pending', this.users[0], this.groups[1]),
+    new JoinRequest(3, 'pending', this.users[1], this.groups[1]),
+    new JoinRequest(4, 'rejected', this.users[1], this.groups[3])
+  ];
+
+  inviteRequests: InviteRequest[] = [
+    new InviteRequest(1, 'rejected', this.users[1], this.groups[0]),
+    new InviteRequest(2, 'pending', this.users[0], this.groups[2]),
+    new InviteRequest(3, 'accepted', this.users[0], this.groups[0]),
+    new InviteRequest(4, 'pending', this.users[0], this.groups[1]),
+    new InviteRequest(5, 'pending', this.users[1], this.groups[1])
+  ];
+
   initializeStorage(): void {
     localStorage.setItem('users', JSON.stringify(this.users));
     localStorage.setItem('admins', JSON.stringify(this.admins));
     localStorage.setItem('groups', JSON.stringify(this.groups));
     localStorage.setItem('userGroups', JSON.stringify(this.userGroups));
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    localStorage.setItem('invitations', JSON.stringify(this.inviteRequests));
+    localStorage.setItem('requests', JSON.stringify(this.joinRequests));
   }
 
   setUsers(users: User[]): void {
@@ -70,9 +89,5 @@ export class StorageService {
 
   setGroups(groups: Group[]): void {
     localStorage.setItem('groups', JSON.stringify(groups));
-  }
-
-  setUserGroups(userGroups: UserGroup[]): void {
-    localStorage.setItem('userGroups', JSON.stringify(userGroups));
   }
 }

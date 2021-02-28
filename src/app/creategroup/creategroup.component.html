@@ -12,8 +12,8 @@
         <li><a>Users</a></li>
         <li><a>Admins</a></li>
         <li [routerLink]="['/allgroups']" class="active"><a>Groups</a></li>
-        <li><a>Invitations</a></li>
-        <li><a >Requests</a></li>
+        <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
+        <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
       </ul>
     </nav>
   </div>

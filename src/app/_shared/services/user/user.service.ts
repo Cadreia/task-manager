@@ -7,16 +7,35 @@ import {UserGroup} from '../../../_models/user-group';
 })
 export class UserService {
   userCount = 3;
+  userGroupCount = 8;
 
   constructor() { }
 
   getLoggedInUser(): any {
-    console.log(JSON.parse(localStorage.getItem('user') as string));
-    return JSON.parse(localStorage.getItem('user') as string);
+    const userCreds = JSON.parse(localStorage.getItem('user') as string);
+    const foundUser = this.getUsers().find(u => (u.userName === userCreds.userName) && (u.password === userCreds.password));
+    const foundAdmin = this.getAdmins().find(a => (a.userName === userCreds.userName) && (a.password === userCreds.password));
+    if (foundUser) {
+      return foundUser;
+    }
+    else if (foundAdmin) {
+      return foundAdmin;
+    }
+  }
+
+  getUserRole(user: User): string {
+    const foundUser = this.getUsers().find(u => (u.userName === user.userName) && (u.password === user.password));
+    const foundAdmin = this.getAdmins().find(a => (a.userName === user.userName) && (a.password === user.password));
+    if (foundUser) {
+      return 'user';
+    }
+    else if (foundAdmin) {
+      return 'admin';
+    }
+    return '';
   }
 
   getUsers(): User[] {
-    console.log(JSON.parse(localStorage.getItem('users') as string));
     return JSON.parse(localStorage.getItem('users') as string);
   }
 
@@ -37,4 +56,13 @@ export class UserService {
     return [];
   }
 
+  addUserToGroup(userGroup: UserGroup): void {
+    const userGroups = this.getUserGroups();
+    userGroups.push(userGroup);
+    this.setUserGroups(userGroups);
+  }
+
+  setUserGroups(userGroups: UserGroup[]): void {
+    localStorage.setItem('userGroups', JSON.stringify(userGroups));
+  }
 }
