@@ -4,6 +4,7 @@ import {UserGroup} from '../../../_models/user-group';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {TokenStorageService} from '../token-storage/token-storage.service';
+import {BaseUser} from '../../../_models/base-user';
 
 const API_URL = 'http://localhost:8080/api/';
 
@@ -35,12 +36,12 @@ export class UserService {
   //   }
   // }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(API_URL + 'users', httpOptions);
+  getUsers(): Observable<BaseUser[]> {
+    return this.http.get<BaseUser[]>(API_URL + 'users', httpOptions);
   }
 
-  getAdmins(): User[] {
-    return [];
+  getAdmins(): Observable<BaseUser[]> {
+    return this.http.get<BaseUser[]>(API_URL + 'admins', httpOptions);
   }
 
   getUserGroups(): UserGroup[] {

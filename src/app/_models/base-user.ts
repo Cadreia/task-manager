@@ -1,5 +1,5 @@
 export class BaseUser {
-  id: number;
+  _id?: number;
   firstName: string;
   lastName: string;
   username: string;
@@ -8,12 +8,12 @@ export class BaseUser {
   role: string;
 
   constructor() {
-    this.id = 0,
+    this._id = 0,
       this.firstName = '',
       this.lastName = '',
       this.username = '',
       this.email = '',
       this.password = '',
-      this.role = ''
+      this.role = '';
   }
 }

@@ -19,7 +19,6 @@ export class UsersComponent implements OnInit {
   // group = new Group(0, '', '', new Admin(0, '', '', '', '', ''));
   user = new BaseUser();
   message = '';
-  userContent = '';
 
   constructor(
     private userService: UserService,
@@ -31,7 +30,6 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUserBoard().subscribe(text => this.userContent = text);
   }
 
   getUsers(): void {

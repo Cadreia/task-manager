@@ -15,7 +15,7 @@ import {UserService} from '../_shared/services/user/user.service';
 export class CreateGroupComponent implements OnInit {
   // group: Group;
   // users: User[];
-  admins: Admin[];
+  // admins: Admin[];
   selectedUsers: User[];
 
   constructor(
@@ -26,7 +26,7 @@ export class CreateGroupComponent implements OnInit {
   ) {
     this.selectedUsers = [];
     // this.users = this.userService.getUsers();
-    this.admins = this.userService.getAdmins();
+    // this.admins = this.userService.getAdmins();
     // this.group = new Group(0, '', '', new Admin(0, '', '', '', '', ''));
   }
 

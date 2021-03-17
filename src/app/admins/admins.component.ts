@@ -13,24 +13,14 @@ export class AdminsComponent implements OnInit {
   constructor(
     private userService: UserService
   ) {
-    this.admins = this.getAdmins();
+    this.admins = [];
+    this.getAdmins();
   }
 
   ngOnInit(): void {
   }
 
-  getAdmins(): Admin[] {
-    return this.userService.getAdmins();
+  getAdmins(): void {
+    this.userService.getAdmins().subscribe(data => this.admins = data);
   }
-
-  // ngOnInit(): void {
-  //   this.userService.getAdminBoard().subscribe(
-  //     data => {
-  //       this.content = data;
-  //     },
-  //     err => {
-  //       this.content = JSON.parse(err.error).message;
-  //     }
-  //   );
-  // }
 }

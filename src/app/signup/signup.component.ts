@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp(): void {
-    console.log(this.baseUser);
+    delete this.baseUser._id;
     this.authService.register(this.baseUser).subscribe(
       data => {
         console.log(data);
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
   }
 
   sendMessage(): void {
-    this.router.navigateByUrl('/login');
     this.authService.loginMessage = 'Login to continue...';
+    this.router.navigateByUrl('/login');
   }
 }

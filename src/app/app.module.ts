@@ -25,6 +25,7 @@ import { InvitationsComponent } from './invitations/invitations.component';
 import { RequestsComponent } from './requests/requests.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
+import {authInterceptorProviders} from "./_helpers/auth.interceptor";
 
 // import { DragDropModule } from "@angular/cdk/drag-drop";
 
@@ -77,7 +78,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
