@@ -21,7 +21,7 @@ export class RequestsService {
   }
 
   getInviteRequestsOfUser(username: string): InviteRequest[] {
-    return this.getInviteRequests().filter(request => request.user.userName === username);
+    return this.getInviteRequests().filter(request => request.user.username === username);
   }
 
   getJoinRequests(): JoinRequest[] {
@@ -29,7 +29,7 @@ export class RequestsService {
   }
 
   getJoinRequestsOfUser(username: string): InviteRequest[] {
-    return this.getJoinRequests().filter(request => request.user.userName === username);
+    return this.getJoinRequests().filter(request => request.user.username === username);
   }
 
   setJoinRequests(joinRequests: JoinRequest[]): void {

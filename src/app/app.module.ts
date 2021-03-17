@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,13 +23,16 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AdminsComponent } from './admins/admins.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { RequestsComponent } from './requests/requests.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MenuComponent } from './menu/menu.component';
 
 // import { DragDropModule } from "@angular/cdk/drag-drop";
 
 const routes: Routes = [
-  // { path: "", component: HomeComponent },
-  { path: '', component: SigninComponent },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'users', component: UsersComponent },
   { path: 'admins', component: AdminsComponent },
   { path: 'dashboard', component: DashboardComponent },
@@ -60,7 +64,9 @@ const routes: Routes = [
     EditTaskComponent,
     AdminsComponent,
     InvitationsComponent,
-    RequestsComponent
+    RequestsComponent,
+    ProfileComponent,
+    MenuComponent
   ],
   imports: [
     // DragDropModule,
@@ -68,7 +74,8 @@ const routes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

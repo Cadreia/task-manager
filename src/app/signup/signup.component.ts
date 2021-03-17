@@ -12,33 +12,41 @@ import {UserService} from '../_shared/services/user/user.service';
 })
 
 export class SignupComponent implements OnInit {
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
   baseUser: BaseUser;
-  role = "";
+  role = '';
 
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private storageService: StorageService,
-    private userService: UserService
+    private authService: AuthService
   ) {
-    this.baseUser = {email: "", firstName: "", id: 0, lastName: "", password: "", userName: ""};
+    this.baseUser = new BaseUser();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  onSignUp() {
+  onSignUp(): void {
     console.log(this.baseUser);
+    this.authService.register(this.baseUser).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        this.sendMessage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
 
-    if (this.role === 'user') {
-      this.userService.userCount += 1;
-      this.baseUser.id = this.userService.userCount;
-      this.authService.createUser(this.baseUser);
-    } else if (this.role === 'admin') {
-      this.baseUser.id = this.storageService.adminCount + 1;
-      this.authService.createAdmin(this.baseUser);
-    }
-
-    this.router.navigate(['/']);
+  sendMessage(): void {
+    this.router.navigateByUrl('/login');
+    this.authService.loginMessage = 'Login to continue...';
   }
 }

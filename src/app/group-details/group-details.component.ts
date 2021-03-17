@@ -13,10 +13,10 @@ import {TaskService} from '../_shared/services/task/task.service';
   styleUrls: ['./group-details.component.css']
 })
 export class GroupDetailsComponent implements OnInit {
-  group: Group;
-  id: number;
-  users: User[];
-  tasks: Task[];
+  // group: Group;
+  // id: number;
+  // users: User[];
+  // tasks: Task[];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,29 +24,29 @@ export class GroupDetailsComponent implements OnInit {
     private userService: UserService,
     private taskService: TaskService
   ) {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id') as string, 10);
-    this.group = this.getGroup(this.id);
-    this.users = this.getUsers(this.id);
-    this.tasks = this.getTasks(this.id);
+    // this.id = parseInt(this.route.snapshot.paramMap.get('id') as string, 10);
+    // this.group = this.getGroup(this.id);
+    // this.users = this.getUsers(this.id);
+    // this.tasks = this.getTasks(this.id);
   }
 
   ngOnInit(): void {
   }
 
-  getGroup(id: number): Group {
-    return this.groupService.getGroup(id);
-  }
-
-  getUsers(groupId: number): User[] {
-    return this.userService.getUsersOfGroup(groupId);
-  }
-
-  getTasks(groupId: number): Task[] {
-    return this.taskService.getTasksOfGroup(groupId);
-  }
-
-  deleteTask(taskId: number): void {
-    this.taskService.deleteTask(taskId);
-    this.tasks = this.getTasks(this.id);
-  }
+  // getGroup(id: number): Group {
+  //   return this.groupService.getGroup(id);
+  // }
+  //
+  // getUsers(groupId: number): User[] {
+  //   return this.userService.getUsersOfGroup(groupId);
+  // }
+  //
+  // getTasks(groupId: number): Task[] {
+  //   return this.taskService.getTasksOfGroup(groupId);
+  // }
+  //
+  // deleteTask(taskId: number): void {
+  //   this.taskService.deleteTask(taskId);
+  //   this.tasks = this.getTasks(this.id);
+  // }
 }

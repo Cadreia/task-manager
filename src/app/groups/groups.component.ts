@@ -8,12 +8,12 @@ import {GroupService} from '../_shared/services/group/group.service';
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-  groups: Group[];
+  // groups: Group[];
 
   constructor(
     private groupService: GroupService
   ) {
-    this.groups = this.groupService.getGroups();
+    // this.groups = this.groupService.getGroups();
   }
 
   ngOnInit(): void {

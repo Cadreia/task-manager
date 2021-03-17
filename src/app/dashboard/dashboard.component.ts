@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../_shared/services/user/user.service';
-import {User} from "../_models/user";
+import {TokenStorageService} from '../_shared/services/token-storage/token-storage.service';
 
 
 @Component({
@@ -9,20 +8,15 @@ import {User} from "../_models/user";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  currentUsername = '';
+  currentUser: any;
 
   constructor(
-    private userService: UserService
+    private tokenStorage: TokenStorageService
     ) {
-    this.currentUsername = this.getCurrentUser().userName;
-    console.log(this.currentUsername);
+    this.currentUser = this.tokenStorage.getUser();
   }
 
   ngOnInit(): void {
 
-  }
-
-  getCurrentUser(): User {
-    return this.userService.getLoggedInUser();
   }
 }

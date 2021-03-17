@@ -1,31 +1,52 @@
 <app-header></app-header>
-<div class="login-form">
-  <form method="post">
+<div class="login-form mb-4">
+  <div class="form-group mb-4">
+    <div
+      *ngIf="message !== ''"
+      class="alert alert-info"
+      role="alert"
+    > {{ message }}
+    </div>
+  </div>
+  <form #f="ngForm"
+        (ngSubmit)="f.form.valid && onSignIn()"
+        name="form"
+        novalidate>
     <div class="avatar">
-      <img src="./assets/admin.png" alt="Avatar">
+<!--      <img src="./assets/admin.png" alt="Avatar">-->
+      <i class="fas fa-sign-in-alt fa-3x mt-3 ml-3"></i>
+    </div>
+    <div class="form-group">
+      <div
+        *ngIf="f.submitted && isLoginFailed"
+        class="alert alert-danger"
+        role="alert"
+      >
+        Login failed: {{ errorMessage }}
+      </div>
     </div>
     <h2 class="text-center">Member Login</h2>
     <div class="form-group">
       <input
-        type="text"
-        [(ngModel)]="loginModel.userName" name="userName"
-        class="form-control"
+        [(ngModel)]="loginModel.username"
+        class="form-control" name="userName"
         placeholder="Username"
+        type="text"
       />    </div>
     <div class="form-group">
       <input
-        type="password"
-        [(ngModel)]="loginModel.password" name="password"
-        class="form-control"
+        [(ngModel)]="loginModel.password"
+        class="form-control" name="password"
         placeholder="Password"
+        type="password"
       />    </div>
     <div class="form-group">
-      <button type="button" (click)="onSignIn()" class="btn btn-primary btn-lg btn-block">Sign in</button>
+      <button (click)="onSignIn()" class="btn btn-primary btn-lg btn-block" type="button">Sign in</button>
     </div>
     <div class="clearfix">
       <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>&nbsp;<br>
 
-      <a href="#" class="pull-right"> Forgot Password?</a>
+      <a class="pull-right" href="#"> Forgot Password?</a>
     </div>
     <p class="text-center small">Don't have an account? <a [routerLink]="['/signup']">Sign up here!</a></p>
   </form>

@@ -1,6 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {User} from '../../../_models/user';
 import {UserGroup} from '../../../_models/user-group';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {TokenStorageService} from '../token-storage/token-storage.service';
+
+const API_URL = 'http://localhost:8080/api/';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -9,42 +18,33 @@ export class UserService {
   userCount = 3;
   userGroupCount = 8;
 
-  constructor() { }
-
-  getLoggedInUser(): any {
-    const userCreds = JSON.parse(localStorage.getItem('user') as string);
-    const foundUser = this.getUsers().find(u => (u.userName === userCreds.userName) && (u.password === userCreds.password));
-    const foundAdmin = this.getAdmins().find(a => (a.userName === userCreds.userName) && (a.password === userCreds.password));
-    if (foundUser) {
-      return foundUser;
-    }
-    else if (foundAdmin) {
-      return foundAdmin;
-    }
+  constructor(
+    private http: HttpClient,
+    private tokenStorage: TokenStorageService
+  ) {
   }
 
-  getUserRole(user: User): string {
-    const foundUser = this.getUsers().find(u => (u.userName === user.userName) && (u.password === user.password));
-    const foundAdmin = this.getAdmins().find(a => (a.userName === user.userName) && (a.password === user.password));
-    if (foundUser) {
-      return 'user';
-    }
-    else if (foundAdmin) {
-      return 'admin';
-    }
-    return '';
-  }
+  // getLoggedInUser(): any {
+  //   const userCreds = JSON.parse(localStorage.getItem('user') as string);
+  //   const foundUser = this.getUsers().find(u => (u.username === userCreds.userName) && (u.password === userCreds.password));
+  //   const foundAdmin = this.getAdmins().find(a => (a.username === userCreds.userName) && (a.password === userCreds.password));
+  //   if (foundUser) {
+  //     return foundUser;
+  //   } else if (foundAdmin) {
+  //     return foundAdmin;
+  //   }
+  // }
 
-  getUsers(): User[] {
-    return JSON.parse(localStorage.getItem('users') as string);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(API_URL + 'users', httpOptions);
   }
 
   getAdmins(): User[] {
-    return JSON.parse(localStorage.getItem('admins') as string);
+    return [];
   }
 
   getUserGroups(): UserGroup[] {
-    return JSON.parse(localStorage.getItem('userGroups') as string);
+    return [];
   }
 
   getUsersOfGroup(groupId: number): User[] {
@@ -64,5 +64,35 @@ export class UserService {
 
   setUserGroups(userGroups: UserGroup[]): void {
     localStorage.setItem('userGroups', JSON.stringify(userGroups));
+  }
+
+
+  getPublicContent(): Observable<any> {
+    return this.http.get(API_URL + 'test/all', {responseType: 'text'});
+  }
+
+  getUserBoard(): Observable<any> {
+    return this.http.get(API_URL + 'test/user', { responseType: 'text' });
+  }
+  //
+  // getModeratorBoard(): Observable<any> {
+  //   return this.http.get(API_URL + 'mod', { responseType: 'text' });
+  // }
+  //
+  // getAdminBoard(): Observable<any> {
+  //   return this.http.get(API_URL + 'admin', { responseType: 'text' });
+  // }
+
+  getUserRole(): string {
+    let role = '';
+    if (this.tokenStorage.isLoggedIn) {
+      const user = this.tokenStorage.getUser();
+      if (user.role === 'ROLE_ADMIN') {
+        role = 'admin';
+      } else if (user.role === 'ROLE_USER') {
+        role = 'user';
+      }
+    }
+    return role;
   }
 }
